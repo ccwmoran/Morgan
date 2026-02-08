@@ -1,234 +1,50 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html>
 <head>
-    <link rel="stylesheet" href="//css.chen-jin.dpdns.org/2026.css">
-    <title>Morgan的个人网站</title>
+    <meta charset="UTF-8">
+    <title>网站维护中</title>
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            background: #000;
-            color: #fff;
-            font-size: 50px;
-            flex-direction: column;
-            position: relative;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: white;
+            color: #333;
         }
-        
-        /* 主渐变背景层 */
-        .gradient-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            filter: blur(80px);
-            transition: all 25s ease-in-out;
-            background: radial-gradient(
-                circle at var(--gradient-x, 50%) var(--gradient-y, 50%),
-                rgba(165, 210, 150, var(--opacity-primary, 0.7)) 0%,
-                rgba(92, 160, 92, var(--opacity-secondary, 0.4)) var(--gradient-size, 60%),
-                transparent var(--gradient-size, 60%)
-            );
+        header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
         }
-        
-        /* 第二层渐变，增强深度感 */
-        .gradient-bg-secondary {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            filter: blur(100px);
-            transition: all 35s ease-in-out;
-            background: radial-gradient(
-                circle at var(--gradient-x2, 30%) var(--gradient-y2, 70%),
-                rgba(165, 210, 150, var(--opacity-primary2, 0.4)) 0%,
-                rgba(92, 160, 92, var(--opacity-secondary2, 0.2)) var(--gradient-size2, 40%),
-                transparent var(--gradient-size2, 40%)
-            );
-        }
-        
-        /* 第三层渐变，增加色彩层次 */
-        .gradient-bg-tertiary {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -3;
-            filter: blur(120px);
-            transition: all 45s ease-in-out;
-            background: radial-gradient(
-                circle at var(--gradient-x3, 70%) var(--gradient-y3, 30%),
-                rgba(165, 210, 150, var(--opacity-primary3, 0.3)) 0%,
-                rgba(92, 160, 92, var(--opacity-secondary3, 0.1)) var(--gradient-size3, 50%),
-                transparent var(--gradient-size3, 50%)
-            );
-        }
-        
-        #bio {
-            color: #ddd;
-            font-size: 15px;
-            z-index: 1;
-            text-align: center;
+        .main {
+            max-width: 800px;
+            margin: 100px auto;
             padding: 0 20px;
-            margin: 20px 0;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
-
-        a {
-            font-size: 15px;
-            text-decoration: none;
-            color: #fff;
-            border: 1px solid #555;
-            padding: 5px 10px;
-            border-radius: 20px;
-            margin-top: 10px;
-            display: flex;
-            transition-duration: 0.3s;
-            z-index: 1;
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
         }
-
-        a img {
-            height: 20px;
-            margin-right: 5px;
-        }
-        
-        a:hover {
-            background: rgba(92, 160, 92, 0.7);
-            box-shadow: 0 0 10px rgba(165, 210, 150, 0.5);
-        }
-        
-        /* 文字样式微调 */
-        body > :first-child {
-            z-index: 1;
-            text-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
-            margin-bottom: 10px;
+        .info {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
         }
     </style>
-    <script>
-        // 初始化渐变背景
-        function initGradient() {
-            // 创建三个渐变层
-            const gradientBg = document.createElement('div');
-            gradientBg.className = 'gradient-bg';
-            document.body.appendChild(gradientBg);
-            
-            const gradientBg2 = document.createElement('div');
-            gradientBg2.className = 'gradient-bg-secondary';
-            document.body.appendChild(gradientBg2);
-            
-            const gradientBg3 = document.createElement('div');
-            gradientBg3.className = 'gradient-bg-tertiary';
-            document.body.appendChild(gradientBg3);
-            
-            // 初始设置
-            updateGradient();
-            
-            // 每20秒更新一次渐变位置、大小和透明度
-            setInterval(updateGradient, 20000);
-            
-            // 每30秒更新一次渐变透明度（深浅变化）
-            setInterval(updateOpacity, 30000);
-        }
-        
-        // 更新渐变位置和大小
-        function updateGradient() {
-            const gradientBg = document.querySelector('.gradient-bg');
-            const gradientBg2 = document.querySelector('.gradient-bg-secondary');
-            const gradientBg3 = document.querySelector('.gradient-bg-tertiary');
-            
-            if (!gradientBg || !gradientBg2 || !gradientBg3) return;
-            
-            // 主渐变层 - 缓慢移动到随机位置
-            const randomX = 20 + Math.floor(Math.random() * 60);
-            const randomY = 20 + Math.floor(Math.random() * 60);
-            const randomSize = 40 + Math.floor(Math.random() * 40);
-            
-            // 第二层渐变 - 缓慢移动到另一个随机位置
-            const randomX2 = 10 + Math.floor(Math.random() * 80);
-            const randomY2 = 10 + Math.floor(Math.random() * 80);
-            const randomSize2 = 30 + Math.floor(Math.random() * 40);
-            
-            // 第三层渐变 - 缓慢移动到第三个随机位置
-            const randomX3 = 15 + Math.floor(Math.random() * 70);
-            const randomY3 = 15 + Math.floor(Math.random() * 70);
-            const randomSize3 = 35 + Math.floor(Math.random() * 45);
-            
-            // 应用新值 - 主渐变层
-            gradientBg.style.setProperty('--gradient-x', `${randomX}%`);
-            gradientBg.style.setProperty('--gradient-y', `${randomY}%`);
-            gradientBg.style.setProperty('--gradient-size', `${randomSize}%`);
-            
-            // 应用新值 - 第二渐变层
-            gradientBg2.style.setProperty('--gradient-x2', `${randomX2}%`);
-            gradientBg2.style.setProperty('--gradient-y2', `${randomY2}%`);
-            gradientBg2.style.setProperty('--gradient-size2', `${randomSize2}%`);
-            
-            // 应用新值 - 第三渐变层
-            gradientBg3.style.setProperty('--gradient-x3', `${randomX3}%`);
-            gradientBg3.style.setProperty('--gradient-y3', `${randomY3}%`);
-            gradientBg3.style.setProperty('--gradient-size3', `${randomSize3}%`);
-        }
-        
-        // 更新渐变透明度（深浅变化）
-        function updateOpacity() {
-            const gradientBg = document.querySelector('.gradient-bg');
-            const gradientBg2 = document.querySelector('.gradient-bg-secondary');
-            const gradientBg3 = document.querySelector('.gradient-bg-tertiary');
-            
-            if (!gradientBg || !gradientBg2 || !gradientBg3) return;
-            
-            // 主渐变层透明度 - 缓慢变化
-            const randomOpacity1 = 0.4 + Math.random() * 0.4;
-            const randomOpacity2 = 0.2 + Math.random() * 0.3;
-            
-            // 第二层渐变透明度 - 更缓慢的变化
-            const randomOpacity3 = 0.2 + Math.random() * 0.3;
-            const randomOpacity4 = 0.1 + Math.random() * 0.2;
-            
-            // 第三层渐变透明度 - 最缓慢的变化
-            const randomOpacity5 = 0.1 + Math.random() * 0.3;
-            const randomOpacity6 = 0.05 + Math.random() * 0.15;
-            
-            // 应用新值 - 主渐变层
-            gradientBg.style.setProperty('--opacity-primary', `${randomOpacity1}`);
-            gradientBg.style.setProperty('--opacity-secondary', `${randomOpacity2}`);
-            
-            // 应用新值 - 第二渐变层
-            gradientBg2.style.setProperty('--opacity-primary2', `${randomOpacity3}`);
-            gradientBg2.style.setProperty('--opacity-secondary2', `${randomOpacity4}`);
-            
-            // 应用新值 - 第三渐变层
-            gradientBg3.style.setProperty('--opacity-primary3', `${randomOpacity5}`);
-            gradientBg3.style.setProperty('--opacity-secondary3', `${randomOpacity6}`);
-        }
-        
-        // 页面加载完成后初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            initGradient();
-            
-            // 获取一言
-            fetch("https://v1.hitokoto.cn/?encode=text&c=i")
-                .then(_ => _.text())
-                .then(_ => document.getElementById("bio").innerText = _);
-        });
-    </script>
-    <base target="_blank">
 </head>
 <body>
-    Morgan's Website
-    <div id="bio"></div>
-    <a href="https://ccwmoran.github.io">
-        <img src="https://gpo.saobby.com/i/XlQ1PmuU5UPnej02.webp">
-        慕然科技 @ CCWMORAN
-    </a>
+    <header>
+        <strong>网站维护通知</strong>
+    </header>
+    <div class="main">
+        <h1>网站正在维护升级</h1>
+        <p>为提供更好的服务，我们正在对网站进行系统升级。</p>
+        <p>在此期间网站将暂时无法访问，给您带来的不便，敬请谅解。</p>
+        
+        <div class="info">
+            <p><strong>维护时间：</strong>10月27日 22:00 - 10月28日 18:00</p>
+            <p><strong>联系方式：</strong>https://ccwmoran.github.</p>
+        </div>
+    </div>
 </body>
 </html>
